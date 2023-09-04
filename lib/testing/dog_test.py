@@ -28,6 +28,7 @@ class TestDog:
 
     def test_creates_table(self):
         '''contains function "create_table()" that takes a declarative_base and creates a SQLite database.'''
+        create_table(Base)  # Pass only the Base object
         
         engine = create_engine(SQLITE_URL)
         create_table(Base, engine)
@@ -70,7 +71,6 @@ class TestDog:
         session.query(Dog).delete()
         session.commit()
         os.remove(db_dir)
-
 
     def test_finds_by_name(self):
         '''contains function "find_by_name()" that takes a session and name and returns a Dog instance corresponding to its database record retrieved by name.'''
